@@ -10,7 +10,7 @@ such as key repetition, and global keyboard shortcuts.
 import time
 from lib.hydra.config import Config
 from lib.display import Display
-from lib.hydra.utils import get_instance
+from lib.hydra.utils import get_instance, save_screenshot
 import machine
 from . import _keys
 
@@ -269,6 +269,10 @@ class UserInput(_keys.Keys):
                 self.set_backlight(self.config["kb_light"])
                 keylist.remove('b')
             # mh_end_if
+
+            if "p" in keylist:
+                if hasattr(Display, 'instance'):
+                    save_screenshot(Display.instance)
 
 
     def _locked_keys_overlay(self, display):
