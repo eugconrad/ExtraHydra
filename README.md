@@ -1,320 +1,123 @@
 <p align="center">
-    <a href="https://github.com/echo-lalia/MicroHydra-Apps" alt="Apps">
-        <img src="https://img.shields.io/badge/Apps-d66e28" /></a>
- &nbsp;&nbsp;
-    <a href="https://github.com/echo-lalia/microhydra-frozen" alt="MicroHydra Firmware">
-        <img src="https://img.shields.io/badge/Firmware-d66e28" /></a>
+  <a href="https://github.com/echo-lalia/MicroHydra-Apps" alt="Apps">
+    <img src="https://img.shields.io/badge/Apps-d66e28" /></a>
   &nbsp;&nbsp;
-    <a href="https://github.com/echo-lalia/Cardputer-MicroHydra/wiki" alt="Wiki">
-        <img src="https://img.shields.io/badge/Wiki-b63532" /></a>
+  <a href="https://github.com/echo-lalia/microhydra-frozen" alt="Firmware">
+    <img src="https://img.shields.io/badge/Firmware-d66e28" /></a>
   &nbsp;&nbsp;
-    <a href="https://github.com/echo-lalia/Cardputer-MicroHydra?tab=GPL-3.0-1-ov-file" alt="License">
-        <img src="https://img.shields.io/github/license/echo-lalia/Cardputer-MicroHydra?labelColor=47102a&color=8d1f52" /></a>
+  <a href="https://github.com/echo-lalia/Cardputer-MicroHydra/wiki" alt="Wiki">
+    <img src="https://img.shields.io/badge/Wiki-b63532" /></a>
   &nbsp;&nbsp;
-    <a href="https://github.com/echo-lalia/Cardputer-MicroHydra" alt="Likes">
-        <img src="https://img.shields.io/github/stars/echo-lalia/Cardputer-MicroHydra?style=flat&labelColor=47102a&color=8d1f52" /></a>
+  <a href="https://github.com/echo-lalia/Cardputer-MicroHydra?tab=GPL-3.0-1-ov-file" alt="License">
+    <img src="https://img.shields.io/github/license/echo-lalia/Cardputer-MicroHydra?labelColor=47102a&color=8d1f52" /></a>
   &nbsp;&nbsp;
-    <a href="https://discord.gg/6e4KUDpgQC" alt="Discord">
-        <img src="https://img.shields.io/discord/1279691612099973151?logo=discord&logoColor=c86744&label=Discord&labelColor=300f2d&color=621e5a" /></a>
+  <a href="https://github.com/echo-lalia/Cardputer-MicroHydra" alt="Stars">
+    <img src="https://img.shields.io/github/stars/echo-lalia/Cardputer-MicroHydra?style=flat&labelColor=47102a&color=8d1f52" /></a>
   &nbsp;&nbsp;
-    <a href="https://ko-fi.com/ethanlacasse" alt="KoFi">
-        <img src="https://img.shields.io/badge/Support_MicroHydra-4c1b52?logo=kofi&logoColor=b63532" /></a>
+  <a href="https://discord.gg/6e4KUDpgQC" alt="Discord">
+    <img src="https://img.shields.io/discord/1279691612099973151?logo=discord&logoColor=c86744&label=Discord&labelColor=300f2d&color=621e5a" /></a>
+  &nbsp;&nbsp;
+  <a href="https://ko-fi.com/ethanlacasse" alt="Ko-Fi">
+    <img src="https://img.shields.io/badge/Support_MicroHydra-4c1b52?logo=kofi&logoColor=b63532" /></a>
 </p>
 
+---
 
-# MicroHydra
-MicroHydra is a simple MicroPython based app launcher with some OS-like features.
+# ExtraHydra
+
+> ⚡ **ExtraHydra** is a custom fork of [MicroHydra](https://github.com/echo-lalia/Cardputer-MicroHydra), enhanced with additional features, mods, and UI improvements. It retains full compatibility with MicroHydra apps while extending core functionality.
 
 <p align="center">
-  <img src="https://i.ibb.co/nNMRWBjj/Frame-2-1.png" alt="Microhydra Banner"/>
+  <img src="https://i.ibb.co/nNMRWBjj/Frame-2-1.png" alt="ExtraHydra Banner"/>
 </p>
 
-This code was built with MicroPython v1.23, for the ESP32-S3.
+---
 
-The main function of MicroHydra is to provide an interface to easily switch between MicroPython apps.   
-And to help lower the barriers to entry for anyone wanting to develop apps for their Cardputer (or other supported device!). 
-Python scripts can be placed in your device's /apps folder (on the flash), or in a /apps folder on a micro sd card. The launcher scans these two locations on startup.   
+## 🚀 Overview
 
-<br />
+ExtraHydra is a lightweight app launcher built on MicroPython (v1.23) for the ESP32-S3. It acts as an "OS-lite" for Cardputer-style devices.
 
-Take a look at the [wiki](https://github.com/echo-lalia/MicroHydra/wiki) for some basic guides to get you started with a MicroPython app.
+* 🔁 Switch between apps seamlessly
+* 📂 Auto-loads from `/apps` on internal flash or SD
+* ⚡ Supports both `.py` and compiled `.mpy` apps
+* 🧩 Enhanced UI, mod system, and custom hooks
+* 📱 Clean separation of launcher and app runtime
 
-And for a repository of community-made MicroHydra apps, see [here](https://github.com/echo-lalia/MicroHydra-Apps).
+Python scripts can be dropped into the `/apps` folder on your device's flash or SD card. On startup, ExtraHydra scans both locations to build the app list.
 
-<br /><br /><br />
+Take a look at the [Wiki](https://github.com/echo-lalia/Cardputer-MicroHydra/wiki) for guides, and check [MicroHydra-Apps](https://github.com/echo-lalia/MicroHydra-Apps) for community apps.
 
+---
 
+## 🧠 How It Works
 
+ExtraHydra runs only one app at a time. To ensure clean memory and prevent import conflicts, it uses:
 
-# how it works:
+* 🧠 RTC memory to store app path and optional args
+* 🔄 Full MicroPython reboot on every app switch
+* 🪝 `hydra.loader` module to set and fetch state
 
-MicroHydra runs only a single "app" at a time, and switches between them by storing data in the RTC memory, and resetting MicroPython.
+When the system reboots, `main.py` reads the stored path from RTC. If valid, the target app is loaded; otherwise, the launcher UI starts.
 
-The launcher, `main.py`, and other built-in apps, import a `hydra.loader` module, to store or load strings in the RTC memory.  
-MicroPython automatically runs `main.py` when it starts, and `main.py` looks for a stored app path, and imports it if it exists. Otherwise, it starts the launcher app.
+> Example: The Files app sets the target file and the editor path in RTC. When the system reboots, the editor reads those args to open the file immediately.
 
-This approach was chosen to help to prevent issues with memory managment or import conflicts between apps. Resetting the entire device means that the only thing thing loaded before the app, is the lightweight `hydra.loader` and `main.py` modules.  
-When MicroHydra is pre-compiled into .mpy files (and therefore doesn't need to compile anything before starting), this reset is fairly quick. And, when it's frozen into a MicroPython firmware, the reset is almost instantaneous.
+If ExtraHydra is frozen into the firmware or precompiled as `.mpy`, rebooting into apps is fast and memory-efficient.
 
-Apps that need to pass information to eachother can use the same `hydra.loader` module to read/store additional arguments in the RTC.  
-For example, when you use the Files app to open a file in the text editor, the Files app adds both the path to the text editor, and the path to the text file into the RTC memory.
+---
 
-<br /><br /><br />
+## 📦 Installing Apps
 
+To add apps:
 
+* Place a `.py`, `.mpy`, or app folder with `__init__.py` into `/apps`
+* Works on both internal flash and microSD
+* Apps appear automatically in the launcher
 
+Apps can be simple single-file scripts or complex folders. Both formats are supported.
 
-# Installing Apps:
-Apps are designed to work very simply in this launcher. Any Python file placed in the "apps" folder on the flash, or the SD card, will be found and can be launched as an app. This works with .mpy files too, meaning machine code written in other languages can also be linked and run as an app (though I have not tested this yet)
+Want examples? Check:
 
-MicroHydra apps can be simple single-file scripts, or be contained in a folder with an `__init__.py`, just like a standard Python module. You can learn more about these specifics on the [app format](https://github.com/echo-lalia/MicroHydra/wiki/App-Format) section of the wiki.
+* [Community Apps](https://github.com/echo-lalia/MicroHydra-Apps)
+* [App Format Docs](https://github.com/echo-lalia/MicroHydra/wiki/App-Format)
 
-Some community-made apps for MH can be found [here](https://github.com/echo-lalia/MicroHydra-Apps) (and this is where the "GetApps" built-in app find apps to download).
+You can also use the built-in **GetApps** app to browse and install packages over serial or Wi-Fi.
 
-<br /><br /><br />
+---
 
+## 🔧 Installation Options
 
+### 1. 🧩 MicroPython-Based Installation
 
+* Flash regular MicroPython to your device (via Thonny or esptool)
+* Extract `DEVICENAME_compiled.zip` or `raw.zip`
+* Upload contents to the device root
 
-# Installing MicroHydra:
+> ⚠️ Raw `.py` files are editable and ideal for dev, but more prone to memory issues. Use compiled `.mpy` when not debugging.
 
-You can install MicroHydra a few different ways. 
+### 2. 💾 Flash ExtraHydra Firmware
 
- - [*Install on top of a normal MicroPython installation:*](#In-MicroPython)   
-   Flash Micropython to your Cardputer, and copy the contents of the `DEVICENAME_compiled.zip` (or `DEVICENAME_raw.zip`) file from the "releases" section to the flash on your device.   
-    > This is the most convenient way to install for development, because you can simply open up the MicroHydra files to see what's goin on. However, the `raw` (as in, ending with ".py") form of the software is much more susceptible to memory issues than the other installation methods, so it's reccomended that you use the compiled (`.mpy`) version for any files that you aren't specifically working inside of.
+* Download `DEVICENAME.bin` from Releases
+* Flash with [M5Burner](https://shop.m5stack.com/pages/download) or Thonny
+* Ensure the device is in bootloader mode (hold G0 while connecting)
 
+> ✅ This is the fastest, cleanest install method — includes frozen ExtraHydra launcher and built-in apps
 
+---
 
- - [*Flash MH as a compiled firmware:*](#As-a-complete-firmware)   
-   You can flash MicroHydra (along with MicroPython) directly to your device using the `DEVICENAME.bin` file from the "Releases" section. (You can also usually find the most recent builds on M5Burner). This is the fastest and easiest to use form of MH!   
-   > In this installation, the MicroHydra files have been 'frozen' into the MicroPython firmware. This makes the built-in files load *much* faster, and makes them all use less memory.  
-   *Make sure you erase the flash before installing, and put your device in download mode by holding G0 when plugging it in.*
+## 🛠 Developer Notes
 
-> **Note for developers:** *The contents of `src/` must be processed in order to output device-specific MicroHydra builds. To learn more, take a look at [this](https://github.com/echo-lalia/MicroHydra/wiki/multi-platform) page in the wiki.*
+ExtraHydra uses a modular build system. If you're building from source:
 
------
+* The `src/` folder must be preprocessed for your hardware
+* Use the [multi-platform wiki guide](https://github.com/echo-lalia/MicroHydra/wiki/multi-platform) to prepare builds
+* Supports `.mpy` bytecode compilation, asset packing, and OTA patching (coming soon)
 
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
+---
 
+## 💬 Community & Support
 
+* 🤝 [Join the Discord](https://discord.gg/6e4KUDpgQC) — feedback, support, and updates
+* 📦 [Browse Community Apps](https://github.com/echo-lalia/MicroHydra-Apps)
+* ☕ [Support the original author](https://ko-fi.com/ethanlacasse) of MicroHydra
 
-
-
-
-
-# In MicroPython
-
-*This is a detailed guide for installing MicroHydra on a regular MicroPython installation, using Thonny.*
-
-<br /> 
-<br />
-
-## Install Thonny
-
-Thonny is a tool that provides a very easy way to flash MicroPython, edit code, and view/edit the files on the device.
-
-You can follow the instructions here to install it: https://thonny.org/   
-> *Make sure to use a new version; older versions might fail to flash the ESP32-S3*
->
-> *Some sources of Thonny (such as with certain built-in package managers) can result in strange issues with permissions or missing dependencies. If you encounter an issue with thonny when setting it up, and there is no other clear solution to your problem, it might be a good idea to try installing from another source.*
-
-<br /> 
-<br />
-<br />
-
-## Flash MicroPython
-Next we need to flash MicroPython on your device 
-
-Open Thonny, click this button in the bottom right, and click "Configure interpreter":   
-<p>
-  <img src="misc\images\thonnyhamburgermenu.png" height="300" hspace="10"/><img src="misc\images\thonnyconfigureinterpreter.png" height="300" hspace="10"/>
-</p>
-
-<br />
-
-It should open this menu:   
-<img src="misc\images\thonnyinterpreteroptions.png" width="500"/>
-
-
-<br />
-
-click "install or update micropython", and you should see another window:   
-<p>
-  <img src="misc\images\thonnyinstallmicropython.png" height="300" hspace="10"/><img src="misc\images\thonnyinstallmicropythonwindow.png" height="300" hspace="10"/>
-</p>
-
-<br />
-<br />
-
-
-
-
-Now you need to put your device into bootloader mode, and connect it to your computer. To do this, simply hold the `G0` button as you connect it to your PC.
-
-<img src="misc\images\cardputerg0.jpg" width="200"/>
-
-> *You can also hold `G0` and tap the reset button to get to bootloader mode.*  
-> *If you are using a device like the TDeck, which doesn't power on when plugged in, you must hold `g0` and then flip the power switch on.*
-
-<br />
-<br />
-
-In "target port" you should now see a device with a name like "USB JTAG". Set the options as shown, and click "Install":  
-<img src="misc\images\thonnyflashsettings.png" width="400"/>
-> *For a device with Octal-SPIRAM (like the TDeck), you will have to download a specific Octal-SPIRAM variant from the [MicroPython website.](https://micropython.org/download/ESP32_GENERIC_S3/)*
-
-> *If installing didn't start, check that the correct device is selected, and it's in bootloader mode.*   
-
-<br />
-
-Once It has been flashed with MicroPython, unplug the device and plug it back in.   
-Thonny might not automatically detect it right away. If it doesn't, you can select it from the bottom right here:   
-![image](https://github.com/echo-lalia/Cardputer-MicroHydra/assets/108598670/7835950b-d773-4de7-9d2b-5de1663b2070)   
-And you might also need to click the red "stop/restart" button at the top to get it to appear. 
-
-<br />
-
-If you see something like this in the bottom terminal, you've flashed it successfully!   
-![image](https://github.com/echo-lalia/Cardputer-MicroHydra/assets/108598670/6c4079eb-3921-4f1c-a269-f503a7ccab40)   
-
-<br />
-<br />
-<br />
-
-## Install MicroHydra
-
-Now you can download and install MicroHydra.  
-To get the apropriate files for your device, you should head to the "Releases" section of the GitHub page, and look for a `DEVICENAME_compiled.zip` or `DEVICENAME_raw.zip` file.
-
-<p>
-  <img src="misc\images\releases.png" height="300" hspace="10"/><img src="misc\images\releasecompiled.png" height="300" hspace="20"/>
-</p>
-
-Extract the .zip file, and head back over to Thonny.
-
-We need to use Thonnys file browser. If you don't see it to your left, you can bring it up by clicking view>Files in the top left.
-<img width="400" src="misc\images\thonnyfiles.png"> 
-
-<br />
-
-On the top half of the file browser, navigate to the folder where you extracted the MicroHydra zip file.  
-Then, select all of the contents, and hit `Upload to /`   
-<img height="260" src="misc\images\thonnyuploadfiles.png"> <img height="260" src="misc\images\thonnyuploadfiles2.png"> 
-
-<br />
-
-Once the files are transferred over, you can test it out by disconnecting it, and powering it on. If everything is working, you should see the main launcher open up!
-
-If you have any issues, feel free to reach out. MH is still growing, and I'm interested to hear of any trouble it might be giving you. 
-
-----
-
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-
-
-
-
-
-
-
-# As a complete firmware
-
-*This is a detailed guide for flashing the MicroHydra firmware on your device, using Thonny.*
-
-<br /> 
-<br />
-
-## Install Thonny
-
-Thonny is a tool that provides a very easy way to flash MicroPython, edit code, and view/edit the files on the device.
-
-You can follow the instructions here to install it: https://thonny.org/   
-> *Make sure to use a new version; older versions might fail to flash the ESP32-S3*
->
-> *Some sources of Thonny (such as with certain built-in package managers) can result in strange issues with permissions or missing dependencies. If you encounter an issue with thonny when setting it up, and there is no other clear solution to your problem, it might be a good idea to try installing from another source.*
-
-<br /> 
-<br />
-<br />
-
-
-## Flash MicroHydra
-
-Now you can download and install MicroHydra.  
-To get the apropriate firmware for your device, you should head to the "Releases" section of the GitHub page, look for a `DEVICENAME.bin` file, and download it.
-
-<p>
-  <img src="misc\images\releases.png" height="300" hspace="10"/><img src="misc\images\releasebin.png" height="300" hspace="20"/>
-</p>
-
-Open Thonny, click this button in the bottom right, and click "Configure interpreter":   
-<p>
-  <img src="misc\images\thonnyhamburgermenu.png" height="300" hspace="10"/><img src="misc\images\thonnyconfigureinterpreter.png" height="300" hspace="10"/>
-</p>
-
-<br />
-
-It should open this menu:   
-<img src="misc\images\thonnyinterpreteroptions.png" width="500"/>
-
-
-<br />
-
-click "install or update micropython", and you should see another window:   
-<p>
-  <img src="misc\images\thonnyinstallmicropython.png" height="300" hspace="10"/><img src="misc\images\thonnyinstallmicropythonwindow.png" height="300" hspace="10"/>
-</p>
-
-<br />
-<br />
-
-
-
-
-Now you need to put your device into bootloader mode, and connect it to your computer. To do this, simply hold the `G0` button as you connect it to your PC.
-
-<img src="misc\images\cardputerg0.jpg" width="200"/>
-
-> *You can also hold `G0` and tap the reset button to get to bootloader mode.*  
-> *If you are using a device like the TDeck, which doesn't power on when plugged in, you must hold `g0` and then flip the power switch on.*
-
-
-<br />
-<br />
-
-Next we will select the firmware .bin file we downloaded.  
-Click the little menu button and click `Select local MicroPython image ...`  
-<img src="misc\images\thonnylocalmicropython.png" width="400"/>  
-Navigate to the .bin file you downloaded, and select it.  
-Make sure you also select your device in the "Target port" dropdown (it should have a name like "USB JTAG").
-
-Your window should look something like this:  
-<img src="misc\images\thonnyflashbin.png" width="400"/>  
-
-Click "Install", and let it do its thing!
-
-> *If installing didn't start, check that the correct device is selected, and it's in bootloader mode.*   
-
-Once it's flashed, you can test it out by disconnecting it, and powering it on. If everything is working, you should see the main launcher open up!
-
-If you have any issues, feel free to reach out. MH is still growing, and I'm interested to hear of any trouble it might be giving you. 
-
-----
-
-<br />
-<br />
-<br />
-
-
-<img src="https://github.com/echo-lalia/Cardputer-MicroHydra/assets/108598670/a0782c5d-5633-489a-a5eb-f6b4e83803ef" alt="Demo GIF"/>
+---
