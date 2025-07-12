@@ -26,7 +26,7 @@
 MicroHydra is a simple MicroPython based app launcher with some OS-like features.
 
 <p align="center">
-  <img src="https://github.com/echo-lalia/Cardputer-MicroHydra/assets/108598670/15b78e4b-64fc-433a-86d3-979362abd9ab" alt="Microhydra Banner"/>
+  <img src="https://i.ibb.co/nNMRWBjj/Frame-2-1.png" alt="Microhydra Banner"/>
 </p>
 
 This code was built with MicroPython v1.23, for the ESP32-S3.
