@@ -35,20 +35,20 @@ _CHAR_WIDTH_HALF = const(_CHAR_WIDTH // 2)
 
 
 _TRANS = const("""[
-{"en": "Enabling wifi...", "zh": "正在启用wifi...", "ja": "WiFiを有効にしています..."},
-{"en": "Connected!", "zh": "已连接!", "ja": "接続されました!"},
-{"en": "Getting app catalog...", "zh": "获取应用目录中...", "ja": "アプリカタログを取得中..."},
-{"en": "Failed to get catalog.", "zh": "获取目录失败。", "ja": "カタログの取得に失敗しました。"},
-{"en": "Connecting to GitHub...", "zh": "正在连接到GitHub...", "ja": "GitHubに接続中..."},
-{"en": "Failed to get app.", "zh": "获取应用失败。", "ja": "アプリの取得に失敗しました。"},
-{"en": "Downloading zip...", "zh": "正在下载zip文件...", "ja": "zipファイルをダウンロード中..."},
-{"en": "Finished downloading 'tempapp.zip'", "zh": "已完成下载 'tempapp.zip'", "ja": "'tempapp.zip' のダウンロードが完了しました"},
-{"en": "Finished extracting.", "zh": "解压完成。", "ja": "解凍が完了しました。"},
-{"en": "Removing 'tempapp.zip'...", "zh": "正在删除 'tempapp.zip'...", "ja": "'tempapp.zip' を削除しています..."},
-{"en": "Failed to extract from zip file.", "zh": "从zip文件解压失败。", "ja": "zipファイルからの解凍に失敗しました。"},
-{"en": "Done!", "zh": "完成!", "ja": "完了!"},
-{"en": "Author:", "zh": "作者:", "ja": "著者:"},
-{"en": "Description:", "zh": "描述:", "ja": "説明:"}
+{"en": "Enabling wifi...", "zh": "正在启用wifi...", "ja": "WiFiを有効にしています...", "ru": "Включение WiFi...", "uk": "Вмикання WiFi..."},
+{"en": "Connected!", "zh": "已连接!", "ja": "接続されました!", "ru": "Подключено!", "uk": "Під'єднано!"},
+{"en": "Getting app catalog...", "zh": "获取应用目录中...", "ja": "アプリカタログを取得中...", "ru": "Получение каталога приложений...", "uk": "Отримання каталогу додатків..."},
+{"en": "Failed to get catalog.", "zh": "获取目录失败。", "ja": "カタログの取得に失敗しました。", "ru": "Ошибка получения каталога.", "uk": "Не вдалося отримати каталог."},
+{"en": "Connecting to GitHub...", "zh": "正在连接到GitHub...", "ja": "GitHubに接続中...", "ru": "Подключение к GitHub...", "uk": "Під'єднання до GitHub..."},
+{"en": "Failed to get app.", "zh": "获取应用失败。", "ja": "アプリの取得に失敗しました。", "ru": "Ошибка получения приложения.", "uk": "Не вдалося отримати додаток."},
+{"en": "Downloading zip...", "zh": "正在下载zip文件...", "ja": "zipファイルをダウンロード中...", "ru": "Загрузка zip...", "uk": "Завантаження zip..."},
+{"en": "Finished downloading 'tempapp.zip'", "zh": "已完成下载 'tempapp.zip'", "ja": "'tempapp.zip' のダウンロードが完了しました", "ru": "Загрузка 'tempapp.zip' завершена", "uk": "Завантаження 'tempapp.zip' завершено"},
+{"en": "Finished extracting.", "zh": "解压完成。", "ja": "解凍が完了しました。", "ru": "Распаковка завершена.", "uk": "Розпакування завершено."},
+{"en": "Removing 'tempapp.zip'...", "zh": "正在删除 'tempapp.zip'...", "ja": "'tempapp.zip' を削除しています...", "ru": "Удаление 'tempapp.zip'...", "uk": "Видалення 'tempapp.zip'..."},
+{"en": "Failed to extract from zip file.", "zh": "从zip文件解压失败。", "ja": "zipファイルからの解凍に失敗しました。", "ru": "Ошибка распаковки zip-архива.", "uk": "Помилка розпакування zip-архіву."},
+{"en": "Done!", "zh": "完成!", "ja": "完了!", "ru": "Готово!", "uk": "Готово!"},
+{"en": "Author:", "zh": "作者:", "ja": "著者:", "ru": "Автор:", "uk": "Автор:"},
+{"en": "Description:", "zh": "描述:", "ja": "説明:", "ru": "Описание:", "uk": "Опис:"}
 ]""")  # noqa: E501
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ GLOBAL_OBJECTS: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

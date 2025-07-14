@@ -23,16 +23,16 @@ machine.freq(240_000_000)
 
 # this defines the translations passed to hydra.menu and hydra.popup
 _TRANS = const("""[
-  {"en": "language", "zh": "语言/Lang", "ja": "言語/Lang"},
-  {"en": "volume", "zh": "音量", "ja": "音量"},
-  {"en": "ui_color", "zh": "UI颜色", "ja": "UIの色"},
-  {"en": "bg_color", "zh": "背景颜色", "ja": "背景色"},
-  {"en": "wifi_ssid", "zh": "WiFi名称", "ja": "WiFi名前"},
-  {"en": "wifi_pass", "zh": "WiFi密码", "ja": "WiFiパスワード"},
-  {"en": "sync_clock", "zh": "同步时钟", "ja": "時計同期"},
-  {"en": "24h_clock", "zh": "24小时制", "ja": "24時間制"},
-  {"en": "timezone", "zh": "时区", "ja": "タイムゾーン"},
-  {"en": "Confirm", "zh": "确认", "ja": "確認"}
+  {"en": "language", "zh": "语言/Lang", "ja": "言語/Lang", "ru": "Язык", "uk": "Мова"},
+  {"en": "volume", "zh": "音量", "ja": "音量", "ru": "Громкость", "uk": "Гучність"},
+  {"en": "ui_color", "zh": "UI颜色", "ja": "UIの色", "ru": "Цвет интерфейса", "uk": "Колір інтерфейсу"},
+  {"en": "bg_color", "zh": "背景颜色", "ja": "背景色", "ru": "Цвет фона", "uk": "Колір фону"},
+  {"en": "wifi_ssid", "zh": "WiFi名称", "ja": "WiFi名前", "ru": "Имя WiFi", "uk": "Назва WiFi"},
+  {"en": "wifi_pass", "zh": "WiFi密码", "ja": "WiFiパスワード", "ru": "Пароль WiFi", "uk": "Пароль WiFi"},
+  {"en": "sync_clock", "zh": "同步时钟", "ja": "時計同期", "ru": "Синхр. время", "uk": "Синхр. годинника"},
+  {"en": "24h_clock", "zh": "24小时制", "ja": "24時間制", "ru": "24-часовой формат", "uk": "24-годинний формат"},
+  {"en": "timezone", "zh": "时区", "ja": "タイムゾーン", "ru": "Часовой пояс", "uk": "Часовий пояс"},
+  {"en": "Confirm", "zh": "确认", "ja": "確認", "ru": "Подтвердить", "uk": "Підтвердити"}
 ]""")
 
 
@@ -44,7 +44,7 @@ config = config.Config()
 I18N = I18n(_TRANS)
 overlay = UIOverlay(i18n=I18N)
 
-LANGS = ['en', 'zh', 'ja']
+LANGS = ['en', 'zh', 'ja', 'ru', 'uk']
 LANGS.sort()
 
 # try mounting SDCard for settings import/export
