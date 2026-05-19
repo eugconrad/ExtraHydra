@@ -4,7 +4,7 @@
 python3 tools/parse_files.py --zip --verbose
 
 # build mpy-cross so we can compile .mpy files
-python3 tools/build_mpy_cross.py
+# python3 tools/build_mpy_cross.py
 
 # compile .mpy files for each device
 python3 tools/compile_hydra_mpy.py
@@ -12,7 +12,7 @@ python3 tools/compile_hydra_mpy.py
 
 # now get ready to build .bin files
 # first, ensure esp-idf is set up
-python3 tools/setup_esp_idf.py
+# python3 tools/setup_esp_idf.py
 
 # now create device folders under esp32/boards
 python3 tools/create_frozen_folders.py
